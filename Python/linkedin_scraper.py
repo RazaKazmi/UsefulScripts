@@ -89,3 +89,15 @@ for item in range(len(jobs)):
     applicant = wd.find_element_by_class_name(applicant_class_name).get_attribute('innerText')
     job_applicants.append(applicant)
 ic(job_applicants)
+
+
+job_data = pd.DataFrame({
+    'Date': job_dates,
+    'Company': job_company_names,
+    'Title': job_titles,
+    'Applicants': job_applicants,
+    'Location': job_locations,
+    'Link': job_links
+})
+
+job_data.to_csv('job_data.csv')
