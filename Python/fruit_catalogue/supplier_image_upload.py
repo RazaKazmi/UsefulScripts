@@ -1,11 +1,13 @@
 #! /usr/bin/env python3
 
 from icecream import ic
+import os
 import requests
 import glob
 
 url = "http://localhost/upload/"
-path = "C:/Users/Raza/Desktop/Python/images/"
+path = os.getcwd() + "/testfiles/"
+ic(path)
 
 def upload_image(filepath):
     with open(filepath) as opened:

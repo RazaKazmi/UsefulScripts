@@ -5,7 +5,7 @@ import os
 import requests
 
 url = "http://yoururl/fruits"
-description_path = "C:/Users/Raza/Desktop/Python/images/"
+description_path = os.getcwd() + "/testfiles/"
 text_files = os.listdir(description_path)
 
 def upload_fruit_data(filepath):
@@ -21,10 +21,13 @@ def upload_fruit_data(filepath):
         weight = lines[1].strip()
         weight = weight[:-4]
         fruit_data["weight"] = int(weight)
-        fruit_data["description"] = lines[2].strip()
+        description = ""
+        for i in range(2,len(lines)):
+            description += lines[i].strip('\n').replace(u'\xa0',u'')
+        fruit_data["description"] = description
         fruit_data["image_name"] = filename.replace(".txt",".jpeg")
     ic(fruit_data)
-    send_to_webservice(fruit_data)
+    #send_to_webservice(fruit_data)
 
 def send_to_webservice(dict_data):
     #Send our Post request to our URL in JSON format

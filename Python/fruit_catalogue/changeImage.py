@@ -9,7 +9,7 @@ from icecream import ic
 
 size = 600, 400
 img_format = ".jpeg"
-img_path = "C:/Users/Raza/Desktop/Python/images/"
+img_path = os.getcwd() + "/testfiles/"
 
 
 def process_image(file):
