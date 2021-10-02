@@ -8,7 +8,7 @@ url = "http://yoururl/fruits"
 description_path = os.getcwd() + "/testfiles/"
 text_files = os.listdir(description_path)
 
-def upload_fruit_data(filepath):
+def upload_fruit_data(filepath, url):
     fruit_data = {}
     ic(filepath)
     filename = os.path.basename(filepath)
@@ -27,9 +27,9 @@ def upload_fruit_data(filepath):
         fruit_data["description"] = description
         fruit_data["image_name"] = filename.replace(".txt",".jpeg")
     ic(fruit_data)
-    #send_to_webservice(fruit_data)
+    send_to_webservice(fruit_data, url)
 
-def send_to_webservice(dict_data):
+def send_to_webservice(dict_data,  url):
     #Send our Post request to our URL in JSON format
     response = requests.post(url, json=dict_data)
     #Raise exception is there is a status code error
@@ -40,7 +40,7 @@ def send_to_webservice(dict_data):
 
 def main():
     for file in text_files:
-        upload_fruit_data(description_path + file)
+        upload_fruit_data(description_path + file, url)
 
 if __name__ == '__main__':
     main()
